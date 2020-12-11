@@ -1,11 +1,11 @@
-/*
+
 #pragma once
 #include "String.h"
 #include <iostream>
 #include "linkList.h"
-*/
-//int main()
-//{
+
+int main()
+{
 	/*
 	char str1[] = "My sfhcrt";
 	char str2[] = "My kbjhfrgtyvnh";
@@ -55,7 +55,6 @@
 	std::cout << std::endl;
 
 	*/
-	/*
 	while (true)
 	{
 		List<int> l1;
@@ -66,6 +65,8 @@
 		List<int> l2;
 		l2.pushFront(22);
 		l2.pushFront(29);
+		std::cout << l1 << '\n';
+		std::cout << l2 << '\n';
 		List<int> l3 = l1 + l2;
 		std::cout << l3 << std::endl;
 		l1 += l3;
@@ -77,9 +78,12 @@
 		std::cout << l1 << std::endl;
 		std::cout << l1.getValue(3) << std::endl;
 		std::cout << l1.len() << std::endl;
+
+		//l1.removeByIndex(-10);
 	}
-	*/
-	
+	return 0;
+}
+/*
 #include <iostream>
 
 
@@ -129,7 +133,7 @@
 		L.pushfront(&b);
 
 		std::cout << *(L._head->value) << std::endl;
-	}
+	}*/
 
 	//return 0;
 //}

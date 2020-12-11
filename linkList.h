@@ -23,6 +23,20 @@ class List
 	Node<T>* head = NULL;
 
 public:
+
+	void copy(const List<T>& list)
+	{
+		this->~List();
+
+		head = NULL;
+		Node<T>* pointer = list.head;
+		while (pointer)
+		{
+			this->pushFront(pointer->value);
+			pointer = pointer->next;
+		}
+	}
+
 	List():head(NULL)
 	{
 
@@ -30,21 +44,7 @@ public:
 
 	List(const List<T>& list)
 	{
-		Node<T>* pointer = head;
-		while (pointer)
-		{
-			Node<T>* newPointer = pointer->next;
-			delete pointer;
-			pointer = newPointer;
-		}
-
-		head = NULL;
-		pointer = list.head;
-		while (pointer)
-		{
-			this->pushFront(pointer->value);
-			pointer = pointer->next;
-		}
+		this->copy(list);
 	}
 
 	~List()
@@ -60,21 +60,7 @@ public:
 
 	List& operator = (List<T>& list)
 	{
-		Node<T>* pointer = head;
-		while (pointer)
-		{
-			Node<T>* newPointer = pointer->next;
-			delete pointer;
-			pointer = newPointer;
-		}
-
-		head = NULL;
-		Node<T>* pointer = list.head;
-		while (pointer)
-		{
-			this->pushFront(pointer->value);
-			pointer = pointer->next;
-		}
+		this->copy(list);
 	}
 
 	void pushFront(const T value)
@@ -94,6 +80,7 @@ public:
 
 	T removeByIndex(const int index)
 	{
+		assert(index >= 0);
 		Node<T>* pointer = head;
 		for (int i = 0; i < index - 1; ++i)
 		{
@@ -107,8 +94,9 @@ public:
 		return res;
 	}
 
-	T getValue(int index)
+	T getValue(const int index)
 	{
+		assert(index >= 0);
 		Node<T>* pointer = head;
 		for (int i = 0; i < index; ++i)
 		{
@@ -124,7 +112,7 @@ public:
 		return head;
 	}
 
-	List operator + (List<T> lista)
+	List<T> operator + (List<T>& lista)
 	{
 		List<T> res;
 		Node<T>* pointer = head;
